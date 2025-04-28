@@ -26,10 +26,8 @@ return new class extends Migration
             $table->string('isSaleCommission')->default("true");
             $table->string('isPos')->default("true");
             $table->string('logo')->nullable();
-            $table->unsignedBigInteger('currencyId')->default(1);
             $table->timestamps();
 
-            $table->foreign('currencyId')->references('id')->on('currency');
         });
     }
 

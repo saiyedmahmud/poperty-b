@@ -22,15 +22,12 @@ return new class extends Migration {
             $table->string('address')->nullable();
             $table->string('password')->nullable();
             
-            $table->unsignedBigInteger('contactId')->nullable();
             $table->unsignedBigInteger('roleId')->default(3);
             $table->string('isLogin')->default('false');
             $table->string('status')->default('true');
             $table->timestamps();
 
             $table->foreign('roleId')->references('id')->on('role');
-            $table->foreign('contactId')->references('id')->on('contact');
-
             $table->index(['email', 'phone']);
         });
     }

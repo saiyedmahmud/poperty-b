@@ -28,22 +28,13 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('bloodGroup')->nullable();
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('employmentStatusId')->nullable();
-            $table->unsignedBigInteger('departmentId')->nullable();
-            $table->unsignedBigInteger('shiftId')->nullable();
             $table->unsignedBigInteger('roleId');
-            $table->dateTime('joinDate')->nullable();
-            $table->dateTime('leaveDate')->nullable();
             $table->string('isLogin')->default('false');
             $table->string('status')->default('true');
-            $table->enum('salaryMode', ['hourly', 'monthly'])->default('monthly');
             $table->timestamps();
 
             // Foreign key constraints
             $table->foreign('roleId')->references('id')->on('role');
-            $table->foreign('employmentStatusId')->references('id')->on('employmentStatus');
-            $table->foreign('departmentId')->references('id')->on('department');
-            $table->foreign('shiftId')->references('id')->on('shift');
         });
     }
 

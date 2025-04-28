@@ -30,40 +30,10 @@ class UsersSeeder extends Seeder
         $user->zipCode = '1205';
         $user->country = 'Bangladesh';
         $user->bloodGroup = 'A+';
-        $user->joinDate = '2021-07-10';
-        $user->designationId = 1;
-        $user->employmentStatusId = 1;
-        $user->departmentId = 1;
-        $user->shiftId = 1;
         $user->password = Hash::make('5555');
         $user->roleId = 1;
         $user->employeeId = 1001;
-        $user->salaryMode = 'monthly';
         $user->save();
-
-        $designation = new DesignationHistory();
-        $designation->userId = 1;
-        $designation->designationId = 1;
-        $designation->startDate = '2021-01-01';
-        $designation->comment = 'Admin';
-        $designation->save();
-
-        $education = new Education();
-        $education->userId = 1;
-        $education->degree = 'BSc in CSE';
-        $education->institution = 'Daffodil International University';
-        $education->fieldOfStudy = 'CSE';
-        $education->result = '3.5';
-        $education->studyStartDate = '2017-01-01';
-        $education->studyEndDate = '2021-01-01';
-        $education->save();
-
-        $salary = new SalaryHistory();
-        $salary->userId = 1;
-        $salary->salary = 10000;
-        $salary->comment = 'Monthly';
-        $salary->startDate = '2021-01-01';
-        $salary->save();
 
 
         $user = new Users();
@@ -72,8 +42,6 @@ class UsersSeeder extends Seeder
         $user->username = 'admin';
         $user->password = Hash::make('admin');
         $user->roleId = 2;
-        $user->shiftId = 1;
-        
         $user->employeeId = 1002;
         $user->save();
 

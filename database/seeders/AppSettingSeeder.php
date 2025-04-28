@@ -23,7 +23,6 @@ class AppSettingSeeder extends Seeder
         $setting->website = 'https://solution.omega.ac';
         $setting->footer = 'OS CRM copyright by Omega Solution LLC';
         $setting->logo = null;
-        $setting->currencyId = 3;
 
         $setting->save();
     }
