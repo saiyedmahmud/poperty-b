@@ -78,7 +78,7 @@ class UsersController extends Controller
         try {
 
             $singleUser = Users::where('id', $request['id'])
-                ->with('employmentStatus', 'shift', 'education', 'awardHistory.award', 'salaryHistory', 'designationHistory.designation', 'quote', 'role', 'department', )
+                ->with('role')
                 ->first();
             if (!$singleUser) {
                 return $this->notFound('User not found!');
@@ -98,24 +98,12 @@ class UsersController extends Controller
     {
         DB::beginTransaction();
         try {
-            $joinDate = new DateTime($request->input('joinDate'));
-            $leaveDate = $request->input('leaveDate') !== null ? new DateTime($request->input('leaveDate')) : null;
-
             if ($request->input('password')) {
                 $hash = Hash::make($request->input('password'));
                 $request->merge([
                     'password' => $hash,
                 ]);
             }
-
-            $joinDateString = $joinDate->format('Y-m-d H:i:s');
-            $leaveDateString = $leaveDate?->format('Y-m-d H:i:s');
-
-            
-            $request->merge([
-                'joinDate' => $joinDateString,
-                'leaveDate' => $leaveDateString,
-            ]);
 
             $user = Users::findOrFail((int)$id);
 
