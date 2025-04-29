@@ -41,7 +41,7 @@ class CustomerController extends Controller
             $customer = Customer::where('email', $loggedCustomer['email'])->first();
             // check authentication using email and password;
             if (!($customer && Hash::check($loggedCustomer['password'], $customer->password))) {
-                return response()->json(['error' => 'username or password is incorrect'], 404);
+                return response()->json(['error' => 'email or password is incorrect'], 404);
             }
 
             $permissions = Role::with('RolePermission.permission')
@@ -550,7 +550,7 @@ class CustomerController extends Controller
     public function getSingleCustomer(Request $request, $id): jsonResponse
     {
         try {
-            $singleCustomer = Customer::where('id', $id)->with('role', 'ticket', 'ticket.ticketStatus', 'ticket.ticketPriority', 'ticket.ticketCategory', 'ticket.ticketComment')->first();
+            $singleCustomer = Customer::where('id', $id)->with('role')->first();
 
             // to secure data removing password form customer data;
             unset($singleCustomer->password);
