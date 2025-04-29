@@ -16,7 +16,7 @@ class AppSettingController extends Controller
     public function getSingleAppSetting(): JsonResponse
     {
         try {
-            $getSingleAppSetting = AppSetting::with('currency')->where('id', 1)->first();
+            $getSingleAppSetting = AppSetting::where('id', 1)->first();
 
             if ($getSingleAppSetting->logo) {
                 $currentAppUrl = url('/');
@@ -53,7 +53,6 @@ class AppSettingController extends Controller
                 'email' => $request->input('email') ?? $appSetting->email,
                 'website' => $request->input('website') ?? $appSetting->website,
                 'footer' => $request->input('footer') ?? $appSetting->footer,
-                'currencyId' => (int)$request->input('currencyId') ? (int)$request->input('currencyId') : $appSetting->currencyId,
                 'logo' => $request->input('logo') ?? null,
                 'bin' => $request->input('bin') ?? $appSetting->bin,
                 'mushak' => $request->input('mushak') ?? $appSetting->mushak,
