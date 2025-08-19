@@ -20,7 +20,7 @@ class UserInfoService
                 return $this->getAllUsersQuery();
             } elseif ($request->query('query') === 'search') {
                 return $this->searchUsersQuery($request);
-            }elseif ($request->query()) {
+            } elseif ($request->query()) {
                 return $this->getUsersQuery($request);
             } else {
                 return $this->badRequest('Invalid query');
@@ -117,5 +117,4 @@ class UserInfoService
             'totalUser' => $getTotalUserQry,
         ]);
     }
-
 }

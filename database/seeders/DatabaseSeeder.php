@@ -2,10 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\ProductCategory;
-use App\Models\TicketCategory;
-use App\Models\TicketComment;
-use App\Models\TicketStatus;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -42,6 +38,5 @@ class DatabaseSeeder extends Seeder
                 customerSeeder::class,
             ]);
         }
-
     }
 }

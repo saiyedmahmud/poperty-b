@@ -101,14 +101,6 @@ class Kernel extends HttpKernel
             ThrottleRequests::class,
             SubstituteBindings::class,
         ],
-        'payment-method' => [
-            ThrottleRequests::class,
-            SubstituteBindings::class,
-        ],
-        'manual-payment' => [
-            ThrottleRequests::class,
-            SubstituteBindings::class,
-        ],
         'customer-profileImage' => [
             ThrottleRequests::class,
             SubstituteBindings::class,
@@ -117,7 +109,7 @@ class Kernel extends HttpKernel
             ThrottleRequests::class,
             SubstituteBindings::class,
         ],
-        
+
     ];
 
     /**

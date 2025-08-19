@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AppSetting extends Model
 {
@@ -25,11 +24,6 @@ class AppSetting extends Model
         'bin',
         'mushak',
         'isSaleCommission',
-        'isPos',
+        'isPos'
     ];
-
-    public function currency(): BelongsTo
-    {
-        return $this->belongsTo(Currency::class, 'currencyId');
-    }
 }

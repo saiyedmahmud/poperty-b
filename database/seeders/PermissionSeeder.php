@@ -102,7 +102,7 @@ class PermissionSeeder extends Seeder
             ['name' => 'milestone', 'type' => 'project'],
             //  project  //
 
-            //taskStatus, milestone, 
+            //taskStatus, milestone,
 
             // account  //
             ['name' => 'transaction', 'type' => 'account'],
@@ -135,12 +135,18 @@ class PermissionSeeder extends Seeder
             'update',
             'delete',
         ]);
-        foreach(endpoints as $permission) {
+
+        foreach (endpoints as $endpoint) {
+            $countedId = 0;
+
             foreach (PERMISSIONSTYPES as $permissionType) {
-                $permissionModel = new Permission();
-                $permissionModel->name = $permissionType . "-" . $permission['name'];
-                $permissionModel->type = $permission['type'];
-                $permissionModel->save();
+                $countedId += 1;
+
+                $permission = new Permission();
+                $permission->id = $endpoint['name'] . $countedId;
+                $permission->name = $permissionType . "-" . $endpoint['name'];
+                $permission->type = $endpoint['type'];
+                $permission->save();
             }
         }
     }

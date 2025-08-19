@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,11 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Users extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     //create user model
     protected $table = 'users';
     protected $primaryKey = 'id';
+    protected $keyType = 'string';
     protected $hidden = ['refreshToken', 'password', 'isLogin'];
     protected $fillable = [
         'firstName',
@@ -42,66 +43,36 @@ class Users extends Model
         'salaryMode',
     ];
 
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = self::generateUniqueKey(10);
+        });
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected static function generateUniqueKey($length): string
+    {
+        $characters = "ABCDEFGHOPQRSTUYZ0123456IJKLMN789VWX";
+        $key = "";
+
+        for ($i = 0; $i < $length; $i++) {
+            $key .= $characters[random_int(0, strlen($characters) - 1)];
+        }
+        // Ensure the key is unique
+        while (static::where('id', $key)->exists()) {
+            $key .= $characters[random_int(0, strlen($characters) - 1)];
+        }
+
+        return $key;
+    }
+
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class, 'roleId');
     }
-    public function quote(): HasMany
-    {
-        return $this->hasMany(Quote::class, 'quoteOwnerId');
-    }
-
-
-    public function designationHistory(): HasMany
-    {
-        return $this->hasMany(DesignationHistory::class, 'userId');
-    }
-
-    public function salaryHistory(): HasMany
-    {
-        return $this->hasMany(SalaryHistory::class, 'userId');
-    }
-
-    public function awardHistory(): HasMany
-    {
-        return $this->hasMany(AwardHistory::class, 'userId');
-    }
-
-    public function education(): HasMany
-    {
-        return $this->hasMany(Education::class, 'userId');
-    }
-
-    public function shift(): BelongsTo
-    {
-        return $this->belongsTo(Shift::class, 'shiftId');
-    }
-
-    public function employmentStatus(): BelongsTo
-    {
-        return $this->belongsTo(EmploymentStatus::class, 'employmentStatusId');
-    }
-
-    public function department(): BelongsTo
-    {
-        return $this->belongsTo(Department::class, 'departmentId');
-    }
-
-    public function designation(): BelongsTo
-    {
-        return $this->belongsTo(Designation::class, 'designationId');
-    }
-
-    public function attachment(): HasMany
-    {
-        return $this->hasMany(Attachment::class, 'attachmentOwnerId');
-
-    }
-
-    public function lead(): HasMany
-    {
-        return $this->hasMany(Lead::class, 'leadOwnerId');
-    }
-    
-    
 }

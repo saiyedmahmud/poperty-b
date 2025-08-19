@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\AppSetting;
 use Illuminate\Database\Seeder;
-use \App\Models\AppSetting;
 
 class AppSettingSeeder extends Seeder
 {
@@ -14,15 +13,13 @@ class AppSettingSeeder extends Seeder
     public function run(): void
     {
         $setting = new AppSetting();
-        $setting->companyName = 'OS CRM';
-        $setting->dashboardType = 'inventory';
-        $setting->tagLine = 'OS CRM';
-        $setting->address = 'House: 139, Road: 13, Sectorr: 10, Uttara, Dhaka-1230';
-        $setting->phone = '+880 18 2021 5555';
-        $setting->email = 'solution@omega.ac';
-        $setting->website = 'https://solution.omega.ac';
-        $setting->footer = 'OS CRM copyright by Omega Solution LLC';
-        $setting->logo = null;
+        $setting->companyName = 'Comiparts';
+        $setting->tagLine = 'Comiparts';
+        $setting->address = 'Comiparts, 123 Main Street, City, Country';
+        $setting->phone = '+12344555900';
+        $setting->email = 'comiparts@email.com';
+        $setting->website = 'https://comiparts';
+        $setting->footer = '© 2025 Comiparts. All rights reserved.';
 
         $setting->save();
     }

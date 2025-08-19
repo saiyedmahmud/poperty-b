@@ -21,8 +21,8 @@ return new class extends Migration {
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('password')->nullable();
-            
-            $table->unsignedBigInteger('roleId')->default(3);
+
+            $table->uuid('roleId')->default(3);
             $table->string('isLogin')->default('false');
             $table->string('status')->default('true');
             $table->timestamps();

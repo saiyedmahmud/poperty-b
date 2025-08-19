@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('web')
-            ->group(base_path('routes/web.php'));
+                ->group(base_path('routes/web.php'));
             //Accounting
             Route::middleware('account')
                 ->prefix('account')
@@ -71,13 +71,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('role-permission')
                 ->group(base_path('app/Http/Controllers/HR/RolePermission/rolePermissionRoutes.php'));
 
-            //Payment
-            route::middleware('payment-method')
-                ->prefix('payment-method')
-                ->group(base_path('app/Http/Controllers/Payment/PaymentMethod/paymentMethodRoutes.php'));
-            route::middleware('manual-payment')
-                ->prefix('manual-payment')
-                ->group(base_path('app/Http/Controllers/Payment/ManualPayment/manualPaymentRoutes.php'));
             //Settings
             Route::middleware('setting')
                 ->prefix('setting')

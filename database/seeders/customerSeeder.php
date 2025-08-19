@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Customer;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,12 +14,15 @@ class customerSeeder extends Seeder
      */
     public function run(): void
     {
-        $pass = "12345678";
+        $customerRoleId = Role::where('name', 'customer')->value('id');
+
+        $pass = "customer1";
         $password = Hash::make($pass);
+
         $customer = new Customer();
-        $customer->roleId = 3;
-        $customer->username = 'Walk-in Customer';
-        $customer->email = 'dev@omega.ac';
+        $customer->roleId = $customerRoleId;
+        $customer->username = 'Customer1';
+        $customer->email = 'customer1@gmail.com';
         $customer->password = $password;
         $customer->phone = '1234567890';
         $customer->address = 'Dhaka, Bangladesh';

@@ -30,7 +30,7 @@ class RoleSeeder extends Seeder
         $role->save();
 
         $role = new Role();
-        $role->name = 'salesman';
+        $role->name = 'sales-man';
         $role->save();
 
         $role = new Role();

@@ -4,12 +4,7 @@ namespace App\Http\Controllers\MediaFiles;
 
 use Exception;
 use Carbon\Carbon;
-use App\Models\Images;
-use App\Models\Company;
-use App\Models\Contact;
-use App\Models\Product;
 use App\Models\AppSetting;
-use App\Models\Attachment;
 use App\Models\MediaFiles;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -96,7 +91,7 @@ class MediaFilesController extends Controller
                     ->skip($pagination['skip'])
                     ->take($pagination['limit'])
                     ->get();
-                
+
                 $totalImageCount = MediaFiles::when($request->query('fileType'), function ($query) use ($request) {
                     return $query->where('fileType', $request->query('fileType'));
                 })->count();
@@ -124,33 +119,11 @@ class MediaFilesController extends Controller
                 if ($media === null) {
                     return $this->badRequest('file not found');
                 }
-            
-                $gallery = Images::where('imageName', $media->id)->get();
-                $settings = AppSetting::where('logo', $media->id)->get();
-                $attachments = Attachment::where('attachmentPath', $media->id)->get();
-                $contact = Contact::where('image', $media->id)->get();
-                $company = Company::where('image', $media->id)->get();
-                
-                
 
-                if (!$gallery->isEmpty()) {
-                    return $this->badRequest('This image is used in gallery');
-                }
+                $settings = AppSetting::where('logo', $media->id)->get();
 
                 if (!$settings->isEmpty()) {
                     return $this->badRequest('This image is used in settings');
-                }
-
-                if (!$attachments->isEmpty()) {
-                    return $this->badRequest('This image is used in attachments');
-                }
-
-                if (!$contact->isEmpty()) {
-                    return $this->badRequest('This image is used in contact');
-                }
-
-                if (!$company->isEmpty()) {
-                    return $this->badRequest('This image is used in company');
                 }
 
                 Storage::delete($media->filePath);
@@ -158,7 +131,6 @@ class MediaFilesController extends Controller
             }
 
             return $this->success('file deleted successfully');
-
         } catch (Exception $err) {
             return $this->badRequest($err->getMessage());
         }
@@ -183,12 +155,11 @@ class MediaFilesController extends Controller
             return response()->stream(function () use ($file) {
                 if (ob_get_length() > 0) {
                     ob_clean();
-                  }
+                }
                 echo $file;
             }, 200, ['Content-Type' => $mimeType]);
         } catch (Exception $err) {
             return $this->badRequest($err->getMessage());
         }
     }
-
 }
