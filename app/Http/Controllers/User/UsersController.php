@@ -105,7 +105,7 @@ class UsersController extends Controller
                 ]);
             }
 
-            $user = Users::findOrFail((int)$id);
+            $user = Users::findOrFail($id);
 
             if (!$user) {
                 return $this->badRequest('User not found!');
@@ -120,7 +120,7 @@ class UsersController extends Controller
                 return $this->badRequest('You can not change super admin role');
             }
 
-            if($user->roleId === 1 && $request->input('password')) {
+            if ($user->roleId === 1 && $request->input('password')) {
                 return $this->badRequest('You can not change super admin password');
             }
 

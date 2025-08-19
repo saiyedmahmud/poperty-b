@@ -66,9 +66,11 @@ class RolePermissionController extends Controller
     public function rolePermissionByRoleId(Request $request): jsonResponse
     {
         try {
+            $data = $request->attributes->get('data');
 
-            $roleId = $request->roleId;
-            $rolePermission = RolePermission::where('roleId', (int)$roleId)
+            $roleId = $request->roleId ?? $data['roleId'];
+
+            $rolePermission = RolePermission::where('roleId', $roleId)
                 ->with('permission')
                 ->get();
             $permissionName = $rolePermission->map(function ($item) {
@@ -88,7 +90,7 @@ class RolePermissionController extends Controller
     public function deleteSingleRolePermission(Request $request, $id): jsonResponse
     {
         try {
-            $deletedRolePermission = RolePermission::where('id', (int)$id)->delete();
+            $deletedRolePermission = RolePermission::where('id', $id)->delete();
 
             if ($deletedRolePermission) {
                 return response()->json(['message' => 'RolePermission Deleted Successfully'], 200);

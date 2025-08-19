@@ -66,7 +66,6 @@ class CustomerController extends Controller
             $customer->profileImage = $customer->profileImage ? url('/') . '/customer-profileImage/' . $customer->profileImage : null;
 
             return response()->json($customer->toArray());
-
         } catch (Exception $err) {
             return response()->json(['error' => $err->getMessage()], 500);
         }
@@ -90,7 +89,7 @@ class CustomerController extends Controller
     {
         try {
             $data = $request->attributes->get("data");
-            if ($data['sub'] !== (int)$id) {
+            if ($data['sub'] !== $id) {
                 return response()->json(['error' => 'You are not authorized to access this data.'], 401);
             }
 
@@ -239,7 +238,7 @@ class CustomerController extends Controller
         }
         return $password;
     }
-    
+
     public function registerCustomer(Request $request): jsonResponse
     {
         try {
@@ -260,8 +259,8 @@ class CustomerController extends Controller
             }
 
             //check if email already exists
-            
-            
+
+
             $hashedPass = Hash::make($password);
             $roleId = 3;
             // $customer = Customer::where('email', $email)->first();
@@ -290,7 +289,7 @@ class CustomerController extends Controller
                     'roleId' => $roleId,
                 ]
             );
-           
+
             $companyName = AppSetting::first();
             $mailData = [
                 'title' => "New Account",
@@ -477,8 +476,7 @@ class CustomerController extends Controller
             } catch (Exception $err) {
                 return response()->json(['error' => 'An error occurred during getting all customer. Please try again later.'], 500);
             }
-        }
-         else if ($request->query()) {
+        } else if ($request->query()) {
             $statusQuery = $request->query('status');
             $roleIdQuery = $request->query('role');
 
@@ -685,21 +683,19 @@ class CustomerController extends Controller
 
     public function getCustomerByEmail(Request $request): jsonResponse
     {
-            try {
-                $customerData = Customer::where('email', $request->query('email'))->get();
-               
-                if ($customerData->isEmpty()) {
-                    return response()->json(['status' => "false"], 200);
-                }
+        try {
+            $customerData = Customer::where('email', $request->query('email'))->get();
 
-                if($customerData->isNotEmpty() && $customerData->first()->password) {
-                    return response()->json(['status' => "true"], 200);
-                }
+            if ($customerData->isEmpty()) {
                 return response()->json(['status' => "false"], 200);
-            } catch (Exception $err) {
-                return $this->badRequest($err->getMessage());
             }
 
-        
+            if ($customerData->isNotEmpty() && $customerData->first()->password) {
+                return response()->json(['status' => "true"], 200);
+            }
+            return response()->json(['status' => "false"], 200);
+        } catch (Exception $err) {
+            return $this->badRequest($err->getMessage());
+        }
     }
 }

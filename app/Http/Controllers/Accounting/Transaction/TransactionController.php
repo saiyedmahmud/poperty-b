@@ -199,7 +199,7 @@ class TransactionController extends Controller
     {
 
         try {
-            $singleTransaction = Transaction::where('id', (int)$id)
+            $singleTransaction = Transaction::where('id', $id)
                 ->with('debit:id,name', 'credit:id,name')
                 ->first();
 
@@ -215,7 +215,7 @@ class TransactionController extends Controller
         try {
             $date = Carbon::parse($request->input('date'));
 
-            $updatedTransaction = Transaction::where('id', (int)$id)->update([
+            $updatedTransaction = Transaction::where('id', $id)->update([
                 'date' => $date,
                 'particulars' => $request->input('particulars'),
                 'type' => 'transaction',
@@ -236,7 +236,7 @@ class TransactionController extends Controller
     public function deleteSingleTransaction(Request $request, $id): JsonResponse
     {
         try {
-            $deletedTransaction = Transaction::where('id', (int)$id)->update([
+            $deletedTransaction = Transaction::where('id', $id)->update([
                 'status' => $request->input('status'),
             ]);
 

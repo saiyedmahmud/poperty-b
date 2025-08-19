@@ -20,7 +20,7 @@ trait AmountInWordsTrait
         $numArray = str_split(strrev((string)$number), 3);
 
         foreach ($numArray as $key => $value) {
-            $chunk = (int)strrev($value);
+            $chunk = strrev($value);
             if ($chunk != 0) {
                 $chunkWords = array();
 
@@ -57,5 +57,4 @@ trait AmountInWordsTrait
 
         return implode(' ', $words);
     }
-
 }

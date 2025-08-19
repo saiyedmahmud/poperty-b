@@ -28,53 +28,28 @@ class AuthorizeMiddleware
         }
 
         try {
-            /*
-             * Decode the token
-             */
             $secret = env('JWT_SECRET');
             $decoded = JWT::decode($token, new Key($secret, 'HS256'));
             $decoded_array = (array)$decoded;
-            /*
-             * Check if the user is still login
-             */
+
             if ($decoded_array['role'] === 'customer') {
                 $customer = Customer::find($decoded_array['sub']);
                 if ($customer->isLogin === 'false') {
                     return $this->unauthorized('Your are not authorized to access this route. Please login first.');
                 }
+            } else {
+                $user = Users::find($decoded_array['sub']);
+                if ($user->isLogin === 'false') {
+                    return $this->unauthorized('Your are not authorized to access this route. Please login first.');
+                }
+            }
 
+            if ($permissions !== 'no-permission') {
                 $permission = Permission::where('name', $permissions)->first();
                 $rolePermission = RolePermission::where('roleId', $decoded_array['roleId'])->where('permissionId', $permission->id)->first();
-
                 if (!$rolePermission) {
                     return $this->forbidden('You are not authorized to access this route');
                 }
-
-                $request->attributes->set('data', $decoded_array);
-                return $next($request);
-            }
-
-
-            if ($decoded_array['role'] === 'admin') {
-                $user = User::find($decoded_array['sub']);
-                if ($user->isLogin === 'false') {
-                    return $this->unauthorized('Your are not authorized to access this route. Please login first.');
-                }
-            }
-            if ($decoded_array['role'] === 'super-admin') {
-                $user = User::find($decoded_array['sub']);
-                if ($user->isLogin === 'false') {
-                    return $this->unauthorized('Your are not authorized to access this route. Please login first.');
-                }
-            }
-
-            /*
-             * Check if the user has the permission to access the route
-             */
-            $permission = Permission::where('name', $permissions)->first();
-            $rolePermission = RolePermission::where('roleId', $decoded_array['roleId'])->where('permissionId', $permission->id)->first();
-            if (!$rolePermission) {
-                return $this->forbidden('You are not authorized to access this route');
             }
 
             $request->attributes->set('data', $decoded_array);
