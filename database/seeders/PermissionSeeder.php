@@ -23,33 +23,8 @@ class PermissionSeeder extends Seeder
             ['name' => 'leadSource', 'type' => 'lead'],
             //  lead  //
 
-            //  contact  //
-            ['name' => 'contact', 'type' => 'contact'],
-            ['name' => 'contactSource', 'type' => 'contact'],
-            ['name' => 'contactStage', 'type' => 'contact'],
-            ['name' => 'company', 'type' => 'contact'],
-            ['name' => 'companyType', 'type' => 'contact'],
-            ['name' => 'industry', 'type' => 'contact'],
-            //  contact  //
-
-            //  product  //
-            ['name' => 'product', 'type' => 'product'],
-            ['name' => 'productCategory', 'type' => 'product'],
-            ['name' => 'supplier', 'type' => 'product'],
-            //  product  //
 
 
-            //  sales //
-            ['name' => 'quote', 'type' => 'sales'],
-            ['name' => 'quoteStage', 'type' => 'sales'],
-            ['name' => 'saleInvoice', 'type' => 'sales'],
-            ['name' => 'paymentMethod', 'type' => 'sales'],
-            ['name' => 'manualPayment', 'type' => 'sales'],
-            ['name' => 'termsAndCondition', 'type' => 'sales'],
-            ['name' => 'saleCommission', 'type' => 'sales'],
-            ['name' => 'stockTransfer', 'type' => 'sales'],
-            ['name' => 'paymentSaleInvoice', 'type' => 'sales'],
-            //  sales //
 
             //   opportunity  //
             ['name' => 'opportunitySource', 'type' => 'opportunity'],
@@ -58,10 +33,7 @@ class PermissionSeeder extends Seeder
             ['name' => 'opportunity', 'type' => 'opportunity'],
             //   opportunity  //
 
-            //  task //
-            ['name' => 'task', 'type' => 'task'],
-            ['name' => 'taskType', 'type' => 'task'],
-            //  task //
+    
 
             //  user  //
             ['name' => 'user', 'type' => 'user'],
@@ -80,29 +52,11 @@ class PermissionSeeder extends Seeder
             ['name' => 'announcement', 'type' => 'user'],
             //  user  //
 
-            //  ticket  //
-            ['name' => 'ticket', 'type' => 'ticket'],
-            ['name' => 'ticketComment', 'type' => 'ticket'],
-            ['name' => 'ticketCategory', 'type' => 'ticket'],
-            ['name' => 'ticketStatus', 'type' => 'ticket'],
-            //  ticket  //
-
 
             //  media  //
             ['name' => 'media', 'type' => 'media'],
             // media  //
 
-
-            // project  //
-            ['name' => 'project', 'type' => 'project'],
-            ['name' => 'priority', 'type' => 'project'],
-            ['name' => 'team', 'type' => 'project'],
-            ['name' => 'projectTask', 'type' => 'project'],
-            ['name' => 'taskStatus', 'type' => 'project'],
-            ['name' => 'milestone', 'type' => 'project'],
-            //  project  //
-
-            //taskStatus, milestone,
 
             // account  //
             ['name' => 'transaction', 'type' => 'account'],
@@ -114,7 +68,6 @@ class PermissionSeeder extends Seeder
             ['name' => 'attachment', 'type' => 'other'],
             ['name' => 'email', 'type' => 'other'],
             ['name' => 'emailConfig', 'type' => 'other'],
-            ['name' => 'crmEmail', 'type' => 'other'],
             // other //
 
             ['name' => 'dashboard', 'type' => 'dashboard'],
@@ -122,8 +75,11 @@ class PermissionSeeder extends Seeder
             //  settings  //
             ['name' => 'setting', 'type' => 'settings'],
             ['name' => 'quickLink', 'type' => 'settings'],
-
             //  settings  //
+
+            // demoModule //
+            ['name' => 'demoModule', 'type' => 'demoModule'],
+            // demoModule //
 
         ]);
 
