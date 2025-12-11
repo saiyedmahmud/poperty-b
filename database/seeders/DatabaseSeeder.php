@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
                 SubAccountSeeder::class,
                 EmailConfigSeeder::class,
                 customerSeeder::class,
-                PaymentMethodSeeder::class,
+                DemoModuleSeeder::class,
             ]);
         } else {
             $this->call([
