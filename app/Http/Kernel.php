@@ -109,6 +109,10 @@ class Kernel extends HttpKernel
             ThrottleRequests::class,
             SubstituteBindings::class,
         ],
+        'demoModule' => [
+            ThrottleRequests::class,
+            SubstituteBindings::class,
+        ],
 
     ];
 
