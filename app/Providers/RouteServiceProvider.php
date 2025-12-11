@@ -84,6 +84,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('media')
                 ->prefix('media')
                 ->group(base_path('app/Http/Controllers/MediaFiles/MediaFileRoutes.php'));
+            //demoModule
+            Route::middleware('demoModule')
+                ->prefix('demoModule')
+                ->group(base_path('app/Http/Controllers/DemoModule/demoModuleRoutes.php'));
         });
     }
 }
