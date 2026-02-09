@@ -81,6 +81,16 @@ class PermissionSeeder extends Seeder
             ['name' => 'demoModule', 'type' => 'demoModule'],
             // demoModule //
 
+            // Property Management //
+            ['name' => 'building', 'type' => 'building'],
+            ['name' => 'floor', 'type' => 'floor'],
+            ['name' => 'flat', 'type' => 'flat'],
+            ['name' => 'renter', 'type' => 'renter'],
+            ['name' => 'rental', 'type' => 'rental'],
+            ['name' => 'invoice', 'type' => 'invoice'],
+            ['name' => 'payment', 'type' => 'payment'],
+            // Property Management //
+
         ]);
 
 
