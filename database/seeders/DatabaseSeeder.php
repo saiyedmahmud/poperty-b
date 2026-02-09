@@ -24,6 +24,13 @@ class DatabaseSeeder extends Seeder
                 EmailConfigSeeder::class,
                 customerSeeder::class,
                 DemoModuleSeeder::class,
+                BuildingSeeder::class,
+                FloorSeeder::class,
+                FlatSeeder::class,
+                RenterSeeder::class,
+                RentalSeeder::class,
+                InvoiceSeeder::class,
+                PaymentSeeder::class,
             ]);
         } else {
             $this->call([
