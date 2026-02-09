@@ -88,6 +88,33 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('demoModule')
                 ->prefix('demoModule')
                 ->group(base_path('app/Http/Controllers/DemoModule/demoModuleRoutes.php'));
+
+            //Property Management - Building & Flats
+            Route::middleware('building')
+                ->prefix('building')
+                ->group(base_path('app/Http/Controllers/Building/buildingRoutes.php'));
+            Route::middleware('floor')
+                ->prefix('floor')
+                ->group(base_path('app/Http/Controllers/Floor/floorRoutes.php'));
+            Route::middleware('flat')
+                ->prefix('flat')
+                ->group(base_path('app/Http/Controllers/Flat/flatRoutes.php'));
+
+            //Property Management - Renter & Rental
+            Route::middleware('renter')
+                ->prefix('renter')
+                ->group(base_path('app/Http/Controllers/Renter/renterRoutes.php'));
+            Route::middleware('rental')
+                ->prefix('rental')
+                ->group(base_path('app/Http/Controllers/Rental/rentalRoutes.php'));
+
+            //Property Management - Invoices & Payments
+            Route::middleware('invoice')
+                ->prefix('invoice')
+                ->group(base_path('app/Http/Controllers/Invoice/invoiceRoutes.php'));
+            Route::middleware('payment')
+                ->prefix('payment')
+                ->group(base_path('app/Http/Controllers/Payment/paymentRoutes.php'));
         });
     }
 }
