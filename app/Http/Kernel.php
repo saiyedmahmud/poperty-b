@@ -113,6 +113,34 @@ class Kernel extends HttpKernel
             ThrottleRequests::class,
             SubstituteBindings::class,
         ],
+        'building' => [
+            ThrottleRequests::class,
+            SubstituteBindings::class,
+        ],
+        'floor' => [
+            ThrottleRequests::class,
+            SubstituteBindings::class,
+        ],
+        'flat' => [
+            ThrottleRequests::class,
+            SubstituteBindings::class,
+        ],
+        'renter' => [
+            ThrottleRequests::class,
+            SubstituteBindings::class,
+        ],
+        'rental' => [
+            ThrottleRequests::class,
+            SubstituteBindings::class,
+        ],
+        'invoice' => [
+            ThrottleRequests::class,
+            SubstituteBindings::class,
+        ],
+        'payment' => [
+            ThrottleRequests::class,
+            SubstituteBindings::class,
+        ],
 
     ];
 
